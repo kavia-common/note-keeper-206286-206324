@@ -1,104 +1,274 @@
-/* CSS Variables for Theme Management */
+/* Ocean Professional Theme (Light/Dark) */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --nk-blue: #2563eb;
+  --nk-amber: #f59e0b;
+  --nk-red: #ef4444;
+  --nk-surface: #ffffff;
+  --nk-background: #f9fafb;
+  --nk-gradient: linear-gradient(90deg, #2563eb0f 0%, #f9fafb 100%);
+  --nk-text: #111827;
+  --nk-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --bg-primary: var(--nk-background);
+  --bg-secondary: var(--nk-surface);
+  --text-primary: var(--nk-text);
+  --text-secondary: #2563eb;
+  --border-color: #eaecee;
+  --button-bg: var(--nk-blue);
+  --button-text: #fff;
+  --accent: var(--nk-amber);
 }
-
 [data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --nk-blue: #2563eb;
+  --nk-amber: #f59e0b;
+  --nk-red: #ef4444;
+  --nk-surface: #1c2024;
+  --nk-background: #18202a;
+  --bg-primary: #18202a;
+  --bg-secondary: #232b35;
+  --nk-gradient: linear-gradient(90deg,#232b35,#18202a);
+  --text-primary: #edf2fc;
+  --text-secondary: #f59e0b;
+  --border-color: #23304a;
+  --button-bg: #2563eb;
+  --button-text: #fff;
+  --accent: #f59e0b;
 }
-
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
   color: var(--text-primary);
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', Arial, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* --- Layout --- */
+.App {
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+  background: var(--bg-primary);
   display: flex;
   flex-direction: column;
+}
+.nk-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: var(--nk-gradient);
+  padding: 12px 22px;
+  border-bottom: 1.5px solid var(--border-color);
+  box-shadow: var(--nk-shadow);
+  position: sticky; top: 0; z-index: 10;
+}
+.nk-header-brand {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--nk-blue);
+  letter-spacing: 1px;
+  display: flex; align-items: center; gap: 8px;
+}
+.nk-navbar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.nk-navbar a {
   color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: 0.2s;
+  font-weight: 500;
 }
-
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+.nk-navbar a:hover {
+  background: var(--nk-blue);
+  color: #fff;
 }
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
+.nk-theme-toggle {
+  background: var(--button-bg);
   color: var(--button-text);
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 1rem;
+  padding: 7px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  margin-left: 15px;
+}
+.nk-theme-toggle:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.nk-burger {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.nk-burger span {
+  height: 3px; width: 24px;
+  background: var(--text-primary); border-radius: 2px;
+  display: block;
+  transition: 0.2s;
+}
+
+/* Main Content */
+.nk-main {
+  flex: 1;
+  padding: 32px 0 20px 0;
+  max-width: 740px;
+  margin: 0 auto;
+  width: 100%;
+}
+.nk-footer {
+  text-align: center;
+  padding: 20px 10px 15px 10px;
+  background: var(--bg-secondary);
+  font-size: 0.98em;
+  color: var(--nk-blue);
+  border-top: 1px solid var(--border-color);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.nk-footer code {
+  background: #e0e7ff;
+  color: var(--nk-blue);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+/* --- Notes List --- */
+.notes-list-container {
+  margin: 0 auto; width: 100%;
+  max-width: 600px;
+}
+.notes-list-header {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px;
+}
+.notes-list-header h1 { font-size: 2.1em; color: var(--nk-blue); margin:0;}
+.notes-list-create-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.06em;
+  padding: 10px 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(245,158,11,0.07);
+  transition: 0.17s;
 }
-
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.notes-list-create-btn:hover { opacity:0.96; background: var(--nk-blue);}
+.notes-list { display: flex; flex-direction: column; gap: 16px;}
+.notes-list-empty {
+  text-align: center; padding: 60px 0;
+  font-size: 1.04em; color: #b1b5c4;
 }
-
-.theme-toggle:active {
-  transform: translateY(0);
+.notes-list-item {
+  display: block;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px 18px 12px 18px;
+  color: var(--text-primary);
+  box-shadow: 0 1px 7px rgba(38,99,235,0.035);
+  text-decoration: none;
+  transition: box-shadow 0.18s, border 0.18s;
+  position: relative;
+  min-height: 56px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.notes-list-item:hover { border:2px solid var(--nk-blue); box-shadow:0 2px 12px #2563eb20;}
+.notes-list-title {
+  font-size: 1.22em;
+  font-weight: 600;
+  color: var(--nk-blue);
 }
-
-/* Responsive design for mobile */
+.notes-list-date {
+  font-size: 0.9em;
+  color: #898c98;
+}
+.notes-list-snippet {
+  margin-top: 4px;
+  color: #444a;
+  font-size: 1.01em;
+}
+/* --- Note Editor --- */
+.note-editor {
+  margin: 0 auto; max-width: 600px; width: 100%;
+  background: var(--bg-secondary);
+  border-radius: 13px;
+  box-shadow: 0 2px 15px #2563eb14;
+  padding: 22px 18px;
+  display: flex; flex-direction: column; gap: 19px;
+  border: 2px solid var(--border-color);
+}
+.note-editor-header {
+  display: flex; justify-content: space-between; align-items: center; gap: 7px;
+  margin-bottom: 7px;
+}
+.note-editor-back-btn,
+.note-editor-save-btn,
+.note-editor-delete-btn {
+  background: var(--nk-blue);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 1em;
+  padding: 8px 19px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.17s;
+}
+.note-editor-save-btn { background: var(--accent);}
+.note-editor-delete-btn { background: var(--nk-red);}
+.note-editor-back-btn { background: var(--bg-secondary); color: var(--nk-blue); border:1.5px solid var(--nk-blue);}
+.note-editor-back-btn:hover,
+.note-editor-save-btn:hover,
+.note-editor-delete-btn:hover { opacity: 0.88;}
+.note-editor-title {
+  font-size: 1.5em;
+  padding: 9px 13px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 7px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.note-editor-content {
+  width: 100%;
+  resize: vertical;
+  min-height: 125px;
+  padding: 11px;
+  border-radius: 8px;
+  font-size: 1.08em;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  margin-bottom: 13px;
+  font-family: inherit;
+}
 @media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+  .nk-header, .nk-footer { flex-direction: column; align-items: flex-start;}
+  .nk-main { padding: 12px 0 10px 0;}
+  .notes-list-container, .note-editor { max-width: 99vw; }
+  .notes-list-header h1 { font-size: 1.43em;}
+}
+@media (max-width: 540px) {
+  .nk-header { padding: 10px 6px;}
+  .nk-navbar { gap: 7px;}
+  .nk-theme-toggle { padding: 6px 13px; font-size: 0.97em;}
+  .notes-list-create-btn { padding: 8px 10px;}
+}
+@media (max-width: 900px) {
+  .nk-navbar { display: none;}
+  .nk-navbar.open { display: flex; flex-direction: column; position: absolute; top: 54px; right: 12px; background: var(--bg-secondary); box-shadow: var(--nk-shadow); padding: 12px 20px 12px 12px; border-radius: 7px;}
+  .nk-burger { display: flex;}
+}
+/* Hide burger & nav for wider screens */
+@media (min-width: 900px) {
+  .nk-navbar { display: flex !important;}
+  .nk-burger { display: none !important;}
 }
